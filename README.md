@@ -123,3 +123,24 @@ Pages: **Status** · **Users** · **Policies** · **Audit Log**
 - The Policy Engine listens on loopback only (`127.0.0.1:8001`) — never externally exposed
 - The Lambda API Gateway resource policy restricts invocations to the Gateway's Elastic IP
 - nginx enforces TLS 1.2/1.3 and rate-limits to 100 req/s per IP
+
+---
+
+## Licence
+
+This project is released under the [MIT Licence](LICENSE). Free to use, modify, and distribute.
+
+---
+
+## नेपाली सारांश (Nepali Summary)
+
+यो प्रणाली नेपाली साना तथा मझौला उद्यमहरू (SMEs) का लागि निर्मित एक **Zero Trust सुरक्षा ढाँचा** हो। यसले AWS र Azure जस्ता क्लाउड सेवाहरूमा पहुँच नियन्त्रण गर्दछ — प्रत्येक अनुरोधको प्रमाणीकरण JWT टोकनद्वारा हुन्छ र नीति इञ्जिनले अनुमति वा अस्वीकृति निर्णय गर्दछ।
+
+**मुख्य विशेषताहरू:**
+- प्रत्येक पहुँच अनुरोध लग गरिन्छ (अडिट लग)
+- भूमिका-आधारित पहुँच नियन्त्रण (Administrator, Operator, Viewer)
+- प्रशासनिक ड्यासबोर्ड मार्फत व्यवस्थापन
+- AWS र Azure दुवैमा एकसाथ काम गर्दछ
+- निःशुल्क खुला स्रोत सफ्टवेयर — मासिक लागत लगभग NPR ५,७०० मात्र
+
+स्थानीय रूपमा चलाउन `RUN_LOCAL.md` हेर्नुहोस्।
