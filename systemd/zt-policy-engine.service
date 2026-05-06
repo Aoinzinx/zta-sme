@@ -1,0 +1,18 @@
+[Unit]
+Description=ZT-SME Policy Engine
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/zt-sme-framework/policy-engine
+EnvironmentFile=/opt/zt-sme-framework/.env
+ExecStart=/opt/zt-sme-framework/venv/bin/uvicorn main:app --host 127.0.0.1 --port 8001 --workers 1
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

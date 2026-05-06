@@ -1,0 +1,18 @@
+[Unit]
+Description=ZT-SME Access Gateway
+After=zt-auth-service.service
+Requires=zt-auth-service.service
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/zt-sme-framework/gateway
+EnvironmentFile=/opt/zt-sme-framework/.env
+ExecStart=/opt/zt-sme-framework/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8443 --workers 1
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

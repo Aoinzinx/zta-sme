@@ -1,0 +1,18 @@
+[Unit]
+Description=ZT-SME Authentication Service
+After=zt-policy-engine.service
+Requires=zt-policy-engine.service
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/opt/zt-sme-framework/auth-service
+EnvironmentFile=/opt/zt-sme-framework/.env
+ExecStart=/opt/zt-sme-framework/venv/bin/uvicorn main:app --host 127.0.0.1 --port 8002 --workers 1
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
