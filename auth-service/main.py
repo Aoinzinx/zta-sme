@@ -15,10 +15,10 @@ app = FastAPI(title="ZT-SME Authentication Service", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001", "https://dashboard.yourdomain.com"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1)(:[0-9]+)?",
     allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(auth_router, prefix="/auth")

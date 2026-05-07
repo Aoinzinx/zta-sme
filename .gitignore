@@ -39,3 +39,25 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Dissertation / report generation scripts (not part of framework)
+generate_gantt.py
+generate_figures.py
+generate_new_figures.py
+generate_final_dissertation.py
+generate_23056296_final.py
+generate_updated_docx.py
+rebuild_dissertation.py
+insert_figures_and_audit.py
+audit_docx.py
+read_sections.py
+read_tables.py
+
+# Generated output files
+*.png
+*.docx
+*.pdf
+
+# Windows PowerShell helper scripts (local dev only)
+start_all.ps1
+start_services.ps1

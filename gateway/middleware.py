@@ -25,7 +25,7 @@ ALGORITHM         = "HS256"
 POLICY_ENGINE_URL = os.environ["POLICY_ENGINE_URL"]   # http://127.0.0.1:8001
 
 # Paths that bypass Zero Trust enforcement (health + OpenAPI docs)
-PUBLIC_PATHS = {"/health", "/docs", "/openapi.json", "/redoc"}
+PUBLIC_PATHS = {"/health", "/docs", "/openapi.json", "/redoc", "/favicon.ico"}
 
 
 class ZeroTrustMiddleware(BaseHTTPMiddleware):

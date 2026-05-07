@@ -17,7 +17,7 @@ app = FastAPI(title="ZT-SME Access Gateway", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000"],
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1)(:[0-9]+)?",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -26,16 +26,24 @@ app.add_middleware(
 # !! Zero Trust middleware MUST be registered before route handlers !!
 app.add_middleware(ZeroTrustMiddleware)
 
+
+# Health and favicon MUST be declared before the catch-all proxy router
+@app.get("/health")
+async def health():
+    return {"status": "ok", "service": "gateway"}
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    from fastapi.responses import Response
+    return Response(status_code=204)
+
+
 # Admin API consumed by the dashboard — MUST be before the catch-all proxy router
 app.include_router(admin_router, prefix="/admin")
 
 # Upstream proxy routes: /aws/* and /azure/* (catch-all, must be last)
 app.include_router(proxy_router)
-
-
-@app.get("/health")
-async def health():
-    return {"status": "ok", "service": "gateway"}
 
 
 if __name__ == "__main__":
